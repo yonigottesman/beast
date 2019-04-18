@@ -22,7 +22,7 @@ def index():
     form = UploadForm()
     if form.validate_on_submit():
         image_bytes = form.image.data.read()
-        predict(image_bytes)
-        flash(x)
+        prediction = predict(image_bytes)
+        flash(str(prediction))
         return redirect('/index')
     return render_template('index.html', title='upload', form=form)
