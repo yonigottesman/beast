@@ -13,6 +13,7 @@ model = load_learner(model_path, model_name)
 def predict(image_bytes):
     image = open_image(BytesIO(image_bytes))
     x, class_, losses = model.predict(image)
+    # print(class_, losses)
     return x
 
 

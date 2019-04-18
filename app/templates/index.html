@@ -2,11 +2,31 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-<h1>Upload a deer or gazelle image</h1>
+
+<div class="jumbotron">
+    <h1>Deer or Gazelle?!</h1>
+    <p>Upload image to find out</p>
+</div>
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+           <div class="alert alert-success">
+               <strong>{{message}}</strong>
+           </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+
 <div class="row">
   <div class="col-md-4">
     {{ wtf.quick_form(form) }}
   </div>
 </div>
+
+
 
 {% endblock %}
