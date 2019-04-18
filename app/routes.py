@@ -6,10 +6,10 @@ from app.forms import UploadForm
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    # form = LoginForm()
     form = UploadForm()
     if form.validate_on_submit():
+        image_bytes = form.image.data.read()
         flash('YONIGO')
         return redirect('/index')
-    return render_template('index.html', title='Sign In', form=form)
+    return render_template('index.html', title='upload', form=form)
 
