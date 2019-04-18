@@ -1,20 +1,21 @@
 {% extends 'bootstrap/base.html' %}
 {% block title %}
-Solar
+Beast
 {% endblock %}
 
 {% block head%}
 {{super()}}
-  <title>Solar</title>
+  <title>beast</title>
 </head>
 {% endblock %}
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
 {% endblock %}
 
 {% block content %}
+<div class="container">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -22,6 +23,6 @@ Solar
             {% endfor %}
         {% endif %}
     {% endwith %}
-{% block app_content %}{% endblock %}
-
+    {% block app_content %}{% endblock %}
+</div>
 {% endblock %}
