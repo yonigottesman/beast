@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for
 from app.forms import UploadForm
 from fastai.vision import load_learner, open_image, BytesIO
 import os
-
+import base64
 
 model_path = os.getcwd() + '/ai/model'
 model_name = 'model.pkl'
@@ -22,7 +22,10 @@ def predict(image_bytes):
 def index():
     form = UploadForm()
     if form.validate_on_submit():
-        image_bytes = form.image.data.read()
+        data_url = form.image.data
+        content = data_url.split(';')[1]
+        image_encoded = content.split(',')[1]
+        image_bytes = base64.decodebytes(image_encoded.encode('utf-8'))
         prediction = predict(image_bytes)
         flash(str(prediction))
         return redirect('/index')
