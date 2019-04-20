@@ -8,5 +8,5 @@ from app import images
 
 
 class UploadForm(FlaskForm):
-    image = HiddenField(id='inp_img')
+    image = HiddenField(id='inp_img',validators=[FileRequired()])
     submit = SubmitField('Upload')
