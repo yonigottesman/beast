@@ -6,7 +6,7 @@ import os
 import base64
 
 model_path = os.getcwd() + '/ai/model'
-model_name = 'model.pkl'
+model_name = 'model_with_unicorn.pkl'
 model = load_learner(model_path, model_name)
 
 
