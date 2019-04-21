@@ -17,16 +17,28 @@ def predict(image_bytes):
     return x
 
 
+def validate_image_data_url(data_url):
+    if len(data_url.split(';')) >= 2 and\
+       len(data_url.split(';')[1].split(',')) >= 2:
+        return True
+    else:
+        return False
+    
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     form = UploadForm()
     if form.validate_on_submit():
         data_url = form.image.data
-        content = data_url.split(';')[1]
-        image_encoded = content.split(',')[1]
-        image_bytes = base64.decodebytes(image_encoded.encode('utf-8'))
-        prediction = predict(image_bytes)
-        flash(str(prediction))
+        message = ''
+        if validate_image_data_url(data_url):
+            content = data_url.split(';')[1]
+            image_encoded = content.split(',')[1]
+            image_bytes = base64.decodebytes(image_encoded.encode('utf-8'))
+            message = str(predict(image_bytes))
+        else:
+            message = 'Upload valid image'
+        flash(message)
         return redirect('/index')
     return render_template('index.html', title='upload', form=form)

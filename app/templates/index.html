@@ -39,7 +39,10 @@
 {% block scripts %}
 {{ super() }}
 <script type="text/javascript">
-    document.getElementById('inp_file').addEventListener('change', fileChange, false);
+
+
+  document.getElementById('inp_file').validity.valid
+  document.getElementById('inp_file').addEventListener('change', fileChange, false);
   function fileChange(e) {
       document.getElementById('inp_img').value = '';
       var file = e.target.files[0];
